@@ -6,6 +6,8 @@ import { useState, useEffect } from "react";
 import api from "../utils/api.js";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
 
+/*import { Routes, Route, Navigate } from "react-router-dom";*/
+
 function App() {
   const [currentUser, setCurrentUser] = useState({});
 
