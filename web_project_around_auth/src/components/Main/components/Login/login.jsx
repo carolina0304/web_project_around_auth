@@ -2,32 +2,61 @@ import { useState } from "react";
 
 import Header from "../../../Header/Header";
 
-export default function Login() {
+export default function Login(props) {
   const [data, setData] = useState({
     email: "",
     password: "",
   });
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    props.onLogin({ email: data.email, password: data.password });
+  }
+
   return (
     <div className="login">
       <Header />
-      <form action="#" className="login__form" id="Loginform" novalidate>
+      <form
+        action="#"
+        className="login__form"
+        id="Loginform"
+        novalidate
+        onSubmit={handleSubmit}
+      >
         <fieldset className="login__fieldset">
-          <label htmlFor="" className="login__label"></label>
+          <label htmlFor="email" className="login__label">
+            Email:
+          </label>
           <input
-            type="text"
+            type="email"
             className="login__input login__input_type_error"
-            id="url"
+            id="email"
             value={data.email}
             onChange={(e) => setData({ ...data, email: e.target.value })}
             placeholder="Correo electronico"
             required
           />
           <span className="login__input-error login-email-error">
-            Por favor, Introduce una direccion web.
+            Por favor, Introduce un correo electronico.
           </span>
-          <label htmlFor="" className="login__password-label"></label>
-          <input type="text" />
+          <label htmlFor="password" className="login__password-label">
+            Contraseña:
+          </label>
+          <input
+            type="password"
+            className="login__input login__input_type_error"
+            id="password"
+            value={data.password}
+            onChange={(e) => setData({ ...data, password: e.target.value })}
+            placeholder="Password"
+          />
+          <span className="login__input-error login-password-error">
+            Por favor, Introduce tu contraseña.
+          </span>
+          <button id="buttonLogin" type="submit" className="login__buttonlogin">
+            Inicia Sesion
+          </button>
+          <p>¿Aún no eres miembro? Regístrate aquí</p>
         </fieldset>
       </form>
     </div>
