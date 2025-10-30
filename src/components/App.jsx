@@ -6,10 +6,14 @@ import { useState, useEffect } from "react";
 import api from "../utils/api.js";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
 
-/*import { Routes, Route, Navigate } from "react-router-dom";*/
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Login from "./Main/components/Login/login.jsx";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
+
+  const [isLoggedIn, setIsloggedIn] = useState(false); //Nuevo estado
+  const [token, setToken] = useState(localStorage.getItem("token")); //Para el token
 
   const [selectedCard, setSelectedCard] = useState(null);
 
@@ -114,29 +118,31 @@ function App() {
   };
 
   return (
-    <CurrentUserContext.Provider
-      value={{
-        currentUser,
-        handleUpdateUser,
-        onUpdateAvatar: handleUpdateAvatar,
-        handleAppPlaceSubmit,
-      }}
-    >
-      <div className="page">
-        <Header />
-        <Main
-          cards={cards}
-          setCards={setCards}
-          onAddPlaceSubmit={handleAppPlaceSubmit}
-          onCardLike={handleCardLike}
-          onCardDelete={handleCardDelete}
-          onOpenPopup={handleOpenPopup}
-          onClosePopup={handleClosePopup}
-          popup={selectedCard}
-        />
-        <Footer />
-      </div>
-    </CurrentUserContext.Provider>
+    <BrowserRouter>
+      <CurrentUserContext.Provider
+        value={{
+          currentUser,
+          handleUpdateUser,
+          onUpdateAvatar: handleUpdateAvatar,
+          handleAppPlaceSubmit,
+        }}
+      >
+        <div className="page">
+          <Header />
+          <Main
+            cards={cards}
+            setCards={setCards}
+            onAddPlaceSubmit={handleAppPlaceSubmit}
+            onCardLike={handleCardLike}
+            onCardDelete={handleCardDelete}
+            onOpenPopup={handleOpenPopup}
+            onClosePopup={handleClosePopup}
+            popup={selectedCard}
+          />
+          <Footer />
+        </div>
+      </CurrentUserContext.Provider>
+    </BrowserRouter>
   );
 }
 
