@@ -14,9 +14,19 @@ import {
   useNavigate,
 } from "react-router-dom";
 import Login from "./Main/components/Login/login.jsx";
+import Register from "./Main/components/Register/register.jsx";
 import { signin, register, usersme } from "../utils/auth.js";
 
 function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
+  );
+}
+
+function AppContent() {
+  const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState({});
 
   const [isLoggedIn, setIsloggedIn] = useState(false); //Nuevo estado
@@ -102,7 +112,7 @@ function App() {
       .catch((err) => console.error(err));
   };
 
-  //Eliminat tarjeta
+  //Eliminar tarjeta
   const handleCardDelete = (card) => {
     api
       .deleteCard(card._id)
@@ -129,8 +139,9 @@ function App() {
       .then((res) => {
         if (res.token) {
           localStorage.setItem("token", res.token);
-          setToken(res, token);
+          setToken(res.token);
           setIsloggedIn(true);
+          navigate("/");
           // Redirigir a la página principal
           // navigate('/'); // Si usas useNavigate
         }
@@ -144,7 +155,8 @@ function App() {
   function handleRegister(data) {
     register(data.email, data.password)
       .then((res) => {
-        console("Usuario registrado exitosamente:", res);
+        console.log("Usuario registrado exitosamente:", res);
+        navigate("/signin");
         // Redirigir al login después del registro exitoso
         // navigate('/signin');
       })
@@ -154,46 +166,68 @@ function App() {
       });
   }
 
-  return (
-    <BrowserRouter>
-      <CurrentUserContext.Provider
-        value={{
-          currentUser,
-          handleUpdateUser,
-          onUpdateAvatar: handleUpdateAvatar,
-          handleAppPlaceSubmit,
-        }}
-      >
-        <div className="page">
-          <Header />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                isLoggedIn ? (
-                  <Main
-                    cards={cards}
-                    setCards={setCards}
-                    onAddPlaceSubmit={handleAppPlaceSubmit}
-                    onCardLike={handleCardLike}
-                    onCardDelete={handleCardDelete}
-                    onOpenPopup={handleOpenPopup}
-                    onClosePopup={handleClosePopup}
-                    popup={selectedCard}
-                  />
-                ) : (
-                  <Navigate to="/signin" />
-                )
-              }
-            />
-            <Route path="/signin" element={<Login />} />
-            <Route path="/signup" element={<div> Register Component </div>} />
-          </Routes>
+  //Verificacion de Token al cargar
 
-          <Footer />
-        </div>
-      </CurrentUserContext.Provider>
-    </BrowserRouter>
+  function checkToken() {
+    const token = localStorage.getItem("token");
+    if (token) {
+      usersme(token)
+        .then((res) => {
+          setCurrentUser(res);
+          setIsloggedIn(true);
+        })
+        .catch((err) => {
+          console.log("Token invalido", err);
+          localStorage.removeItem("token");
+          setIsloggedIn(false);
+        });
+    }
+  }
+  useEffect(() => {
+    checkToken();
+  }, []);
+
+  return (
+    <CurrentUserContext.Provider
+      value={{
+        currentUser,
+        handleUpdateUser,
+        onUpdateAvatar: handleUpdateAvatar,
+        handleAppPlaceSubmit,
+      }}
+    >
+      <div className="page">
+        <Header />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              isLoggedIn ? (
+                <Main
+                  cards={cards}
+                  setCards={setCards}
+                  onAddPlaceSubmit={handleAppPlaceSubmit}
+                  onCardLike={handleCardLike}
+                  onCardDelete={handleCardDelete}
+                  onOpenPopup={handleOpenPopup}
+                  onClosePopup={handleClosePopup}
+                  popup={selectedCard}
+                />
+              ) : (
+                <Navigate to="/signin" />
+              )
+            }
+          />
+          <Route path="/signin" element={<Login onLogin={handleLogin} />} />
+          <Route
+            path="/signup"
+            element={<Register onRegister={handleRegister} />}
+          />
+        </Routes>
+
+        <Footer />
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
 
