@@ -20,7 +20,7 @@ export const register = (email, password) => {
   });
 };
 
-export const authorization = (email, password) => {
+export const signin = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
     headers: {

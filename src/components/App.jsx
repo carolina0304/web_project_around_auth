@@ -6,8 +6,15 @@ import { useState, useEffect } from "react";
 import api from "../utils/api.js";
 import CurrentUserContext from "../contexts/CurrentUserContext.js";
 
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 import Login from "./Main/components/Login/login.jsx";
+import { signin, register, usersme } from "../utils/auth.js";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
@@ -117,6 +124,36 @@ function App() {
       });
   };
 
+  function handleLogin(data) {
+    signin(data.email, data.password)
+      .then((res) => {
+        if (res.token) {
+          localStorage.setItem("token", res.token);
+          setToken(res, token);
+          setIsloggedIn(true);
+          // Redirigir a la página principal
+          // navigate('/'); // Si usas useNavigate
+        }
+      })
+      .catch((err) => {
+        console.log("Error en login:", err);
+        // Aquí puedes mostrar un mensaje de error al usuario
+      });
+  }
+
+  function handleRegister(data) {
+    register(data.email, data.password)
+      .then((res) => {
+        console("Usuario registrado exitosamente:", res);
+        // Redirigir al login después del registro exitoso
+        // navigate('/signin');
+      })
+      .catch((err) => {
+        console.log("Error en registro:", err);
+        // Aquí puedes mostrar un mensaje de error al usuario
+      });
+  }
+
   return (
     <BrowserRouter>
       <CurrentUserContext.Provider
@@ -129,16 +166,30 @@ function App() {
       >
         <div className="page">
           <Header />
-          <Main
-            cards={cards}
-            setCards={setCards}
-            onAddPlaceSubmit={handleAppPlaceSubmit}
-            onCardLike={handleCardLike}
-            onCardDelete={handleCardDelete}
-            onOpenPopup={handleOpenPopup}
-            onClosePopup={handleClosePopup}
-            popup={selectedCard}
-          />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                isLoggedIn ? (
+                  <Main
+                    cards={cards}
+                    setCards={setCards}
+                    onAddPlaceSubmit={handleAppPlaceSubmit}
+                    onCardLike={handleCardLike}
+                    onCardDelete={handleCardDelete}
+                    onOpenPopup={handleOpenPopup}
+                    onClosePopup={handleClosePopup}
+                    popup={selectedCard}
+                  />
+                ) : (
+                  <Navigate to="/signin" />
+                )
+              }
+            />
+            <Route path="/signin" element={<Login />} />
+            <Route path="/signup" element={<div> Register Component </div>} />
+          </Routes>
+
           <Footer />
         </div>
       </CurrentUserContext.Provider>

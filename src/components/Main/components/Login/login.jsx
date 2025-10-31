@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 import Header from "../../../Header/Header";
 
 export default function Login(props) {
@@ -58,7 +58,7 @@ export default function Login(props) {
           </button>
           <div className="login__signup">
             <p>¿Aún no eres miembro?</p>
-            <Link to="/register" className="signup__link">
+            <Link to="/signup" className="signup__link">
               Regístrate aquí
             </Link>
           </div>
