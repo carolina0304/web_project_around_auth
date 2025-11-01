@@ -15,6 +15,9 @@ import {
 } from "react-router-dom";
 import Login from "./Main/components/Login/login.jsx";
 import Register from "./Main/components/Register/register.jsx";
+
+import ProtectedRoute from "./ProtectedRoute"; // Nueva importación
+
 import { signin, register, usersme } from "../utils/auth.js";
 
 function App() {
@@ -218,10 +221,21 @@ function AppContent() {
               )
             }
           />
-          <Route path="/signin" element={<Login onLogin={handleLogin} />} />
+          <Route
+            path="/signin"
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <Login onLogin={handleLogin} />{" "}
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/signup"
-            element={<Register onRegister={handleRegister} />}
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <Register onRegister={handleRegister} />{" "}
+              </ProtectedRoute>
+            }
           />
         </Routes>
 
