@@ -205,7 +205,7 @@ function AppContent() {
           <Route
             path="/"
             element={
-              isLoggedIn ? (
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
                 <Main
                   cards={cards}
                   setCards={setCards}
@@ -216,26 +216,13 @@ function AppContent() {
                   onClosePopup={handleClosePopup}
                   popup={selectedCard}
                 />
-              ) : (
-                <Navigate to="/signin" />
-              )
-            }
-          />
-          <Route
-            path="/signin"
-            element={
-              <ProtectedRoute isLoggedIn={isLoggedIn}>
-                <Login onLogin={handleLogin} />{" "}
               </ProtectedRoute>
             }
           />
+          <Route path="/signin" element={<Login onLogin={handleLogin} />} />
           <Route
             path="/signup"
-            element={
-              <ProtectedRoute isLoggedIn={isLoggedIn}>
-                <Register onRegister={handleRegister} />{" "}
-              </ProtectedRoute>
-            }
+            element={<Register onRegister={handleRegister} />}
           />
         </Routes>
 
