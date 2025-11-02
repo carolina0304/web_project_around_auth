@@ -1,6 +1,6 @@
 import React from "react";
 import Popup from "./Popup";
-import error from "../images/Error.png";
+import error from "../../images/Error.png";
 import exito from "../../images/registro exitoso.png";
 
 function InfoTooltip({ isSuccess, onClose, isOpen }) {
