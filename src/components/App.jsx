@@ -15,6 +15,11 @@ import {
 } from "react-router-dom";
 import Login from "./Main/components/Login/login.jsx";
 import Register from "./Main/components/Register/register.jsx";
+import InfoTooltip from "./Main/components/InfoTooltip/InfoTooltip.jsx";
+
+/*import Login from "./components/Main/components/Login/login";
+import Register from "./components/Main/components/Register/register";
+import InfoTooltip from "./components/InfoTooltip/InfoTooltip";*/
 
 import ProtectedRoute from "./ProtectedRoute"; // Nueva importación
 
@@ -34,6 +39,9 @@ function AppContent() {
 
   const [isLoggedIn, setIsloggedIn] = useState(false); //Nuevo estado
   const [token, setToken] = useState(localStorage.getItem("token")); //Para el token
+
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const [selectedCard, setSelectedCard] = useState(null);
 
@@ -190,6 +198,15 @@ function AppContent() {
     checkToken();
   }, []);
 
+  const handleInfoTooltipClose = () => {
+    setIsInfoTooltipOpen(false);
+  };
+
+  const showInfoTooltip = (success) => {
+    setIsSuccess(success);
+    setIsInfoTooltipOpen(true);
+  };
+
   return (
     <CurrentUserContext.Provider
       value={{
@@ -226,6 +243,11 @@ function AppContent() {
           />
         </Routes>
 
+        <InfoTooltip
+          isSuccess={isSuccess}
+          isOpen={isInfoTooltipOpen}
+          onClose={handleInfoTooltipClose}
+        />
         <Footer />
       </div>
     </CurrentUserContext.Provider>
