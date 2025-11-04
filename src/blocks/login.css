@@ -5,5 +5,63 @@
   font-family: "Inter";
   font-weight: 900;
   font-size: 24px;
-  margin: 34px 64px 0 36px;
+  margin: 60px 461px 0 461px;
+  color: #fff;
+  text-align: center;
+}
+
+.login__form {
+}
+
+.login__fieldset {
+  max-width: 358px;
+  border: none;
+  margin: auto;
+}
+
+.login__label {
+  width: 358px;
+  height: 28px;
+  border-width: 1px;
+}
+
+.login__input {
+  width: 358px;
+  height: 28px;
+  border-width: 1px;
+  margin: 29px auto 0 24px;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 14px;
+  border-bottom: 1px solid;
+}
+
+.login__input_type_error {
+  border-bottom-color: red;
+}
+
+.login-email-error {
+}
+
+.login__password-label {
+}
+
+.login__input-error {
+}
+
+.login__buttonlogin {
+  width: 358px;
+  height: 50px;
+  border-radius: 2px;
+  border-width: 1px;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+  color: black;
+  margin: 48px auto 0 24px;
+  cursor: pointer;
+}
+
+.login__link {
 }

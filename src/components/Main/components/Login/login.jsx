@@ -14,7 +14,7 @@ export default function Login(props) {
   }
 
   return (
-    <div className="login">
+    <div>
       <form
         action="#"
         className="login__form"
@@ -58,7 +58,7 @@ export default function Login(props) {
           </button>
           <div className="login__signup">
             <p>¿Aún no eres miembro?</p>
-            <Link to="/signup" className="signup__link">
+            <Link to="/signup" className="login__link">
               Regístrate aquí
             </Link>
           </div>
