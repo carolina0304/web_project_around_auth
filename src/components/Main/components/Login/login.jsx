@@ -22,6 +22,7 @@ export default function Login(props) {
         novalidate
         onSubmit={handleSubmit}
       >
+        <h2 className="login__title">Inicia sesión</h2>
         <fieldset className="login__fieldset">
           <label htmlFor="email" className="login__label">
             Email:

@@ -12,7 +12,17 @@
 
 .header__line {
   width: 100%;
-  margin-top: 41px;
+  /*margin-top: 41px;*/
+}
+
+.header__link {
+  width: 111px;
+  font-family: "Inter";
+  font-size: 18px;
+  margin-top: 67px;
+  color: #fff;
+  text-align: right;
+  margin-left: 600px;
 }
 
 @media screen and (max-width: 1024px) {
