@@ -47,6 +47,8 @@ function AppContent() {
 
   const [cards, setCards] = useState([]);
 
+  const [useremail, setUseremail] = useState("");
+
   useEffect(() => {
     api
       .getInitialCards()
@@ -152,6 +154,7 @@ function AppContent() {
           localStorage.setItem("token", res.token);
           setToken(res.token);
           setIsloggedIn(true);
+          setUseremail(data.email);
           navigate("/");
           // Redirigir a la página principal
           // navigate('/'); // Si usas useNavigate
@@ -159,6 +162,7 @@ function AppContent() {
       })
       .catch((err) => {
         console.log("Error en login:", err);
+        showInfoTooltip(false);
         // Aquí puedes mostrar un mensaje de error al usuario
       });
   }
@@ -167,7 +171,9 @@ function AppContent() {
     register(data.email, data.password)
       .then((res) => {
         console.log("Usuario registrado exitosamente:", res);
+        showInfoTooltip(true);
         navigate("/signin");
+
         // Redirigir al login después del registro exitoso
         // navigate('/signin');
       })
@@ -217,7 +223,7 @@ function AppContent() {
       }}
     >
       <div className="page">
-        <Header />
+        <Header useremail={useremail} isLoggedIn={isLoggedIn} />
         <Routes>
           <Route
             path="/"

@@ -15,7 +15,6 @@ export default function Login(props) {
 
   return (
     <div className="login">
-      <Header />
       <form
         action="#"
         className="login__form"
