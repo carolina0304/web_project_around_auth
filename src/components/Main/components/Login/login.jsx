@@ -56,10 +56,9 @@ export default function Login(props) {
           <button id="buttonLogin" type="submit" className="login__buttonlogin">
             Inicia Sesion
           </button>
-          <div className="login__signup">
-            <p>¿Aún no eres miembro?</p>
+          <div className="login__signin">
             <Link to="/signup" className="login__link">
-              Regístrate aquí
+              ¿Aún no eres miembro? Regístrate aquí
             </Link>
           </div>
         </fieldset>

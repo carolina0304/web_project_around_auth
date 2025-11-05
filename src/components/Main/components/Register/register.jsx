@@ -22,6 +22,7 @@ export default function Register(props) {
         novalidate
         onSubmit={handleSubmit}
       >
+        <h2 className="register__title">Registrate</h2>
         <fieldset className="register__fieldset">
           <label htmlFor="email" className="register__label">
             Email:
@@ -60,9 +61,8 @@ export default function Register(props) {
             Registrate
           </button>
           <div className="register__signup">
-            <p>¿Ya eres miembro?</p>
-            <Link to="/signup" className="signup__link">
-              Inicia sesión aqui
+            <Link to="/signup" className="register__link">
+              ¿Ya eres miembro? Inicia sesión aquí
             </Link>
           </div>
         </fieldset>

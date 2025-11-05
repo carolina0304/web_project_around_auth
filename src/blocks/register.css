@@ -1,7 +1,4 @@
-/*.login {
-}*/
-
-.login__title {
+.register__title {
   font-family: "Inter";
   font-weight: 900;
   font-size: 24px;
@@ -10,22 +7,19 @@
   text-align: center;
 }
 
-.login__form {
-}
-
-.login__fieldset {
+.register__fieldset {
   max-width: 358px;
   border: none;
   margin: 0 auto;
 }
 
-.login__label {
+.register__label {
   width: 358px;
   height: 28px;
   border-width: 1px;
 }
 
-.login__input {
+.register__input {
   width: 357px;
   height: 27px;
   /*border-width: 1px;*/
@@ -41,20 +35,20 @@
   border-bottom: 2px solid #cccccc;
 }
 
-.login__input_type_error {
+.register__input_type_error {
   /* border-bottom-color: red;*/
 }
 
-.login-email-error {
+.register-email-error {
 }
 
-.login__password-label {
+.register__password-label {
 }
 
-.login__input-error {
+.register__input-error {
 }
 
-.login__buttonlogin {
+.register__buttonlogin {
   width: 358px;
   height: 50px;
   border-radius: 2px;
@@ -68,7 +62,7 @@
   cursor: pointer;
 }
 
-.login__link {
+.register__link {
   color: #fff;
   margin: auto;
   margin: 15px 15px 400px 80px;
