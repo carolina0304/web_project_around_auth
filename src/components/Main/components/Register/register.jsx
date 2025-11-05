@@ -61,7 +61,7 @@ export default function Register(props) {
             Registrate
           </button>
           <div className="register__signup">
-            <Link to="/signup" className="register__link">
+            <Link to="/signin" className="register__link">
               ¿Ya eres miembro? Inicia sesión aquí
             </Link>
           </div>

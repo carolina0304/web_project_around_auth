@@ -7,7 +7,7 @@ function InfoTooltip({ isSuccess, onClose, isOpen }) {
   return (
     isOpen && (
       <Popup onClose={onClose}>
-        <div className="popup__content">
+        <div className="popup__form">
           <img
             src={isSuccess ? exito : error}
             alt={isSuccess ? "Registro exitoso" : "Error en el registro"}

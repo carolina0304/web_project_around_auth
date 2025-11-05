@@ -19,6 +19,16 @@ const Header = () => {
             Iniciar sesion
           </Link>
         )}
+        {location.pathname === "/" && (
+          <Link to="/signin" className="header__link">
+            email@mail.com
+          </Link>
+        )}
+        {location.pathname === "/" && (
+          <Link to="/" className="header__link">
+            Cerrar sesión
+          </Link>
+        )}
         <div>
           <img className="header__line" src={logolinea} alt="Linea" />
         </div>

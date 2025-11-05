@@ -24,9 +24,9 @@
   cursor: pointer;
 }
 
-.popup__close:hover {
-  /*opacity: 60%;*/
-}
+/*.popup__close:hover {
+  opacity: 60%;
+}*/
 
 .popup__form {
   width: 430px;
@@ -109,17 +109,17 @@
   cursor: pointer;
 }
 
-.popup__button:invalid {
-  /*opacity: 20%;*/
-}
+/*.popup__button:invalid {
+  opacity: 20%;
+}*/
 
 .popup__button:valid {
   background-color: black;
 }
 
-.popup__button:hover {
-  /*opacity: 80%;*/
-}
+/*.popup__button:hover {
+  opacity: 80%;
+}*/
 
 /* imagen grande */
 .popup__open {
@@ -187,6 +187,20 @@
   height: 800px;
   position: relative;
   top: -1100px;
+}
+
+/*EXITO Y ERROR */
+
+.popup__icon {
+  width: 120px;
+  margin: 60px 155px;
+}
+
+.popup__message {
+  width: 358px;
+  font-family: "Inter";
+  font-size: 24px;
+  margin: auto;
 }
 
 @media screen and (max-width: 1024px) {
