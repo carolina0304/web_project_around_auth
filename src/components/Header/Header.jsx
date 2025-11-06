@@ -3,31 +3,36 @@ import logolinea from "../../images/Line.png";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ userEmail, onSignOut, isLoggedIn }) => {
   const location = useLocation();
   return (
     <header className="header">
       <div>
         <img className="header__logo" src={logo} alt="Logotipo Around" />
-        {location.pathname === "/signin" && (
-          <Link to="/signup" className="header__link">
-            Regístrate
-          </Link>
+
+        {/* Solo mostrar links de auth si NO está logueado */}
+        {!isLoggedIn && (
+          <>
+            {location.pathname === "/signin" && (
+              <Link to="/signup" className="header__link">
+                Regístrate
+              </Link>
+            )}
+            {location.pathname === "/signup" && (
+              <Link to="/signin" className="header__link">
+                Iniciar sesion
+              </Link>
+            )}
+          </>
         )}
-        {location.pathname === "/signup" && (
-          <Link to="/signin" className="header__link">
-            Iniciar sesion
-          </Link>
-        )}
-        {location.pathname === "/" && (
-          <Link to="/signin" className="header__link">
-            email@mail.com
-          </Link>
-        )}
-        {location.pathname === "/" && (
-          <Link to="/" className="header__link">
-            Cerrar sesión
-          </Link>
+        {/* Solo mostrar info de usuario si SÍ está logueado */}
+        {isLoggedIn && (
+          <div className="header__user-info">
+            <span className="header__email">{userEmail}</span>
+            <button className="header__signout-button" onClick={onSignOut}>
+              Cerrar sesión
+            </button>
+          </div>
         )}
         <div>
           <img className="header__line" src={logolinea} alt="Linea" />

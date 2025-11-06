@@ -37,7 +37,9 @@ function AppContent() {
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState({});
 
-  const [isLoggedIn, setIsloggedIn] = useState(false); //Nuevo estado
+  /*const [isLoggedIn, setIsloggedIn] = useState(false); //Nuevo estado*/
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const [token, setToken] = useState(localStorage.getItem("token")); //Para el token
 
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
@@ -50,26 +52,19 @@ function AppContent() {
   const [useremail, setUseremail] = useState("");
 
   useEffect(() => {
-    api
-      .getInitialCards()
-      .then((data) => {
-        setCards(data);
-      })
-      .catch((err) => {
-        console.error("Error al cargar tarjetas:", err);
-      });
-  }, []);
+    if (isLoggedIn) {
+      // Solo cargar datos si está logueado
+      api
+        .getInitialCards()
+        .then((data) => setCards(data))
+        .catch((err) => console.error("Error al cargar tarjetas:", err));
 
-  useEffect(() => {
-    api
-      .getUserInfo()
-      .then((userData) => {
-        setCurrentUser(userData);
-      })
-      .catch((err) => {
-        () => console.log(err);
-      });
-  }, []);
+      api
+        .getUserInfo()
+        .then((userData) => setCurrentUser(userData))
+        .catch((err) => console.log(err));
+    }
+  }, [isLoggedIn]); // Dependencia del estado de login
 
   const handleUpdateUser = (data) => {
     console.log(data);
@@ -153,7 +148,7 @@ function AppContent() {
         if (res.token) {
           localStorage.setItem("token", res.token);
           setToken(res.token);
-          setIsloggedIn(true);
+          setIsLoggedIn(true);
           setUseremail(data.email);
           navigate("/");
           // Redirigir a la página principal
@@ -191,12 +186,12 @@ function AppContent() {
       usersme(token)
         .then((res) => {
           setCurrentUser(res);
-          setIsloggedIn(true);
+          setIsLoggedIn(true);
         })
         .catch((err) => {
           console.log("Token invalido", err);
           localStorage.removeItem("token");
-          setIsloggedIn(false);
+          setIsLoggedIn(false);
         });
     }
   }
@@ -213,6 +208,14 @@ function AppContent() {
     setIsInfoTooltipOpen(true);
   };
 
+  // Función para cerrar sesión
+  const handleSignOut = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    setCurrentUser({});
+    setUseremail("");
+  };
+
   return (
     <CurrentUserContext.Provider
       value={{
@@ -223,7 +226,11 @@ function AppContent() {
       }}
     >
       <div className="page">
-        <Header useremail={useremail} isLoggedIn={isLoggedIn} />
+        <Header
+          userEmail={currentUser.email || useremail}
+          isLoggedIn={isLoggedIn}
+          onSignOut={handleSignOut}
+        />
         <Routes>
           <Route
             path="/"

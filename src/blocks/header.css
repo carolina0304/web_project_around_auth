@@ -25,6 +25,26 @@
   margin-left: 600px;
 }
 
+.header__user-info {
+  width: 111px;
+  font-family: "Inter";
+  font-size: 18px;
+  margin-top: 67px;
+  color: #fff;
+  text-align: right;
+  margin-left: 600px;
+}
+
+.header__signout-button {
+  width: 111px;
+  font-family: "Inter";
+  font-size: 18px;
+  margin-top: 67px;
+  color: #fff;
+  text-align: right;
+  margin-left: 600px;
+}
+
 @media screen and (max-width: 1024px) {
   .header {
     max-width: 700px;
