@@ -35,19 +35,6 @@
   border-bottom: 2px solid #cccccc;
 }
 
-.register__input_type_error {
-  /* border-bottom-color: red;*/
-}
-
-.register-email-error {
-}
-
-.register__password-label {
-}
-
-.register__input-error {
-}
-
 .register__buttonlogin {
   width: 358px;
   height: 50px;
