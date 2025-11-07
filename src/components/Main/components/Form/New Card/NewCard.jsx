@@ -25,6 +25,7 @@ export default function NewCard({ onClose, onAddPlaceSubmit }) {
       noValidate
       onSubmit={handleSubmit}
     >
+      <h2 className="popup__title">Agregar imagen</h2>
       <fieldset className="popup__fieldset">
         <label id="labeltitulo" className="popup__label"></label>
         <input
