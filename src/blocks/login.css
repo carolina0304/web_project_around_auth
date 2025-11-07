@@ -10,8 +10,8 @@
   text-align: center;
 }
 
-.login__form {
-}
+/*.login__form {
+}*/
 
 .login__fieldset {
   max-width: 358px;
@@ -41,18 +41,18 @@
   border-bottom: 2px solid #cccccc;
 }
 
-.login__input_type_error {
-  /* border-bottom-color: red;*/
-}
+/*.login__input_type_error {
+   border-bottom-color: red;
+}*/
 
-.login-email-error {
-}
+/*.login-email-error {
+}*/
 
-.login__password-label {
-}
+/*.login__password-label {
+}*/
 
-.login__input-error {
-}
+/*.login__input-error {
+}*/
 
 .login__buttonlogin {
   width: 358px;

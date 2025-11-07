@@ -9,6 +9,10 @@ const Card = ({ card, setSelectedCard, onCardLike, onCardDelete }) => {
   const { currentUser } = useContext(CurrentUserContext);
 
   const isLiked = likes.some((like) => like._id === currentUser._id);
+
+  console.log("Card likes:", likes);
+  console.log("Is liked:", isLiked);
+  console.log("Current user ID:", currentUser._id);
   /*const imageComponent = {
     title: name,
     card: {

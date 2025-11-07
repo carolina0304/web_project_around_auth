@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 
 const Header = ({ userEmail, onSignOut, isLoggedIn }) => {
   const location = useLocation();
+  // Agrega esta línea para debuggear
+  console.log("isLoggedIn:", isLoggedIn, "location:", location.pathname);
   return (
     <header className="header">
       <div>

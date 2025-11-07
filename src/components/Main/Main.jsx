@@ -89,6 +89,7 @@ const Main = ({ cards, setCards, onAddPlaceSubmit }) => {
     await api
       .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
+        console.log("Respuesta del servidor:", newCard);
         setCards((state) =>
           state.map((currentCard) =>
             currentCard._id === card._id ? newCard : currentCard
