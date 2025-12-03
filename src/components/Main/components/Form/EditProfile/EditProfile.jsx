@@ -5,12 +5,20 @@ export default function EditProfile({ onClose }) {
   /*const userContext = useContext(CurrentUserContext); // Obtiene el objeto currentUser*/
   const { currentUser, handleUpdateUser } = useContext(CurrentUserContext);
 
-  const [name, setName] = useState(currentUser?.name || ""); // Agrega la variable de estado para name
-  const [description, setDescription] = useState(currentUser?.about || ""); // Agrega la variable de estado para description
+  console.log("EditProfile render - currentUser:", currentUser);
+  console.log("EditProfile render - currentUser?.name:", currentUser?.name);
+
+  const [name, setName] = useState(currentUser?.data?.name || ""); // Agrega la variable de estado para name
+  const [description, setDescription] = useState(
+    currentUser?.data?.about || ""
+  ); // Agrega la variable de estado para description
 
   useEffect(() => {
-    setName(currentUser?.name || "");
-    setDescription(currentUser?.about || "");
+    console.log("EditProfile useEffect - currentUser:", currentUser);
+    console.log("EditProfile useEffect - name:", currentUser?.data?.name);
+    console.log("EditProfile useEffect - about:", currentUser?.data?.about);
+    setName(currentUser?.data?.name || "");
+    setDescription(currentUser?.data?.about || "");
   }, [currentUser]);
 
   const handleNameChange = (event) => {

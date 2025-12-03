@@ -22,10 +22,14 @@ class Api {
   _getHeaders() {
     const token = localStorage.getItem("token");
     console.log("Token from localStorage:", token);
-    return {
+
+    const headers = {
       ...this._headers,
-      Authorization: token ? `Bearer ${token}` : undefined, // ← Cambiar 'authorization' por 'Authorization'
+      Authorization: token ? `Bearer ${token}` : undefined,
     };
+
+    console.log("Headers being sent:", headers); // ← Ahora SÍ se ejecutará
+    return headers;
   }
   //Metodo para manejar respuestas de la api+++++++++
 
@@ -62,11 +66,30 @@ class Api {
   }
 
   //Obtener la info del usuario++++++++++
-  getUserInfo() {
+  /*getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
       headers: this._getHeaders(),
     }).then(this._ApiVerification);
+  }*/
+
+  getUserInfo() {
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: "GET",
+      headers: this._getHeaders(),
+    })
+      .then((res) => {
+        console.log("Status de respuesta:", res.status);
+        console.log("Headers de respuesta:", res.headers);
+        console.log("¿Es ok?", res.ok);
+
+        if (res.ok) return res.json();
+        return Promise.reject(`Error: ${res.status}`);
+      })
+      .then((data) => {
+        console.log("Datos procesados:", data);
+        return data;
+      });
   }
 
   // Método para actualizar la información del usuario++++

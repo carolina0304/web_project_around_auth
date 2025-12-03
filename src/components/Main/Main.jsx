@@ -55,8 +55,9 @@ const Main = ({ cards, setCards, onAddPlaceSubmit }) => {
   const { currentUser } = useContext(CurrentUserContext);
 
   console.log("Current user from context:", currentUser);
-  console.log("Current user name:", currentUser?.name);
-  console.log("Current user avatar:", currentUser?.avatar);
+  console.log("Current user data:", currentUser?.data);
+  console.log("Current user name:", currentUser?.data?.name);
+  console.log("Current user avatar:", currentUser?.data?.avatar);
 
   /*const [cards, setCards, onAddPlaceSubmit] = props;*/
 
@@ -100,7 +101,7 @@ const Main = ({ cards, setCards, onAddPlaceSubmit }) => {
       <section className="profile">
         <div className="profile__info">
           <img
-            src={currentUser?.avatar}
+            src={currentUser?.data?.avatar}
             alt="Arlene Gomez"
             className="profile__infoavatar"
             id="avatar"
@@ -114,7 +115,7 @@ const Main = ({ cards, setCards, onAddPlaceSubmit }) => {
           </button>
           <div className="profile__name">
             <h1 className="profile__namenames" id="name">
-              {currentUser?.name}
+              {currentUser?.data?.name}
             </h1>
             <img
               src={EditarNombre}
@@ -124,7 +125,7 @@ const Main = ({ cards, setCards, onAddPlaceSubmit }) => {
               onClick={() => handleOpenPopup(editProfilePopup)}
             />
             <p className="profile__namesubname" id="about">
-              {currentUser?.about}
+              {currentUser?.data?.about}
             </p>
           </div>
           <img
