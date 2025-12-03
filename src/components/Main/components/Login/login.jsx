@@ -19,7 +19,7 @@ export default function Login(props) {
         action="#"
         className="login__form"
         id="Loginform"
-        novalidate
+        noValidate
         onSubmit={handleSubmit}
       >
         <h2 className="login__title">Inicia sesión</h2>

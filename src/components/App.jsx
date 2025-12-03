@@ -35,10 +35,10 @@ function App() {
 
 function AppContent() {
   const navigate = useNavigate();
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState(null);
 
-  /*const [isLoggedIn, setIsloggedIn] = useState(false); //Nuevo estado*/
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [token, setToken] = useState(localStorage.getItem("token")); //Para el token
 
@@ -56,7 +56,7 @@ function AppContent() {
       // Solo cargar datos si está logueado
       api
         .getInitialCards()
-        .then((data) => setCards(data))
+        .then((response) => setCards(response.data))
         .catch((err) => console.error("Error al cargar tarjetas:", err));
 
       api
@@ -82,9 +82,9 @@ function AppContent() {
   };
 
   // No renderices la app hasta que currentUser esté listo
-  if (!currentUser) {
+  /*if (!currentUser) {
     return <div>Cargando usuario...</div>;
-  }
+  }*/
   const handleOpenPopup = (card) => setSelectedCard(card);
 
   const handleClosePopup = () => {
@@ -186,15 +186,31 @@ function AppContent() {
       usersme(token)
         .then((res) => {
           setCurrentUser(res);
+          setUseremail(res.email);
           setIsLoggedIn(true);
         })
         .catch((err) => {
           console.log("Token invalido", err);
           localStorage.removeItem("token");
           setIsLoggedIn(false);
+          setCurrentUser(null);
+        })
+        .finally(() => {
+          setIsLoading(false); // ✅ Termina la carga
         });
+    } else {
+      setCurrentUser(null);
+      setIsLoggedIn(false);
+      setUseremail("");
+      setIsLoading(false); // ✅ Termina la carga
     }
   }
+
+  // ✅ Ahora usa isLoading en lugar de currentUser
+  if (isLoading) {
+    return <div>Cargando...</div>;
+  }
+
   useEffect(() => {
     checkToken();
   }, []);
@@ -227,7 +243,7 @@ function AppContent() {
     >
       <div className="page">
         <Header
-          userEmail={currentUser.email || useremail}
+          userEmail={currentUser?.email || useremail}
           isLoggedIn={isLoggedIn}
           onSignOut={handleSignOut}
         />

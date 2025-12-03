@@ -54,6 +54,10 @@ const Main = ({ cards, setCards, onAddPlaceSubmit }) => {
 
   const { currentUser } = useContext(CurrentUserContext);
 
+  console.log("Current user from context:", currentUser);
+  console.log("Current user name:", currentUser?.name);
+  console.log("Current user avatar:", currentUser?.avatar);
+
   /*const [cards, setCards, onAddPlaceSubmit] = props;*/
 
   // 👇 Aquí va la función para likes/dislikes
@@ -87,6 +91,10 @@ const Main = ({ cards, setCards, onAddPlaceSubmit }) => {
       })
       .catch((err) => console.log(err));
   }
+
+  console.log("Cards value:", cards);
+  console.log("Is array:", Array.isArray(cards));
+
   return (
     <main className="content">
       <section className="profile">

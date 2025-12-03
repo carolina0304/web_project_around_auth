@@ -19,7 +19,7 @@ export default function Register(props) {
         action="#"
         className="register__form"
         id="Registerform"
-        novalidate
+        noValidate
         onSubmit={handleSubmit}
       >
         <h2 className="register__title">Registrate</h2>

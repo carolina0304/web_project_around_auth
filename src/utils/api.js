@@ -5,6 +5,28 @@ class Api {
     this._headers = headers;
   }
   //Metodos
+  // Nuevo método para actualizar el token
+  setAuthToken(token) {
+    this._headers.Authorization = `Bearer ${token}`;
+  }
+
+  // Método para obtener headers actualizados
+  /*_getHeaders() {
+    const token = localStorage.getItem("token");
+    return {
+      ...this._headers,
+      authorization: token ? `Bearer ${token}` : this._headers.authorization,
+    };
+  }*/
+
+  _getHeaders() {
+    const token = localStorage.getItem("token");
+    console.log("Token from localStorage:", token);
+    return {
+      ...this._headers,
+      Authorization: token ? `Bearer ${token}` : undefined, // ← Cambiar 'authorization' por 'Authorization'
+    };
+  }
   //Metodo para manejar respuestas de la api+++++++++
 
   _ApiVerification(res) {
@@ -16,7 +38,7 @@ class Api {
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       method: "GET",
-      headers: this._headers,
+      headers: this._getHeaders(),
     }).then(this._ApiVerification);
   }
 
@@ -24,7 +46,7 @@ class Api {
   addCard(data) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      headers: this._headers,
+      headers: this._getHeaders(),
       body: JSON.stringify({
         name: data.name,
         link: data.link,
@@ -35,7 +57,7 @@ class Api {
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: this._getHeaders(),
     }).then(this._ApiVerification);
   }
 
@@ -43,7 +65,7 @@ class Api {
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
-      headers: this._headers,
+      headers: this._getHeaders(),
     }).then(this._ApiVerification);
   }
 
@@ -51,7 +73,7 @@ class Api {
   updateUserInfo(data) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: this._getHeaders(),
       body: JSON.stringify({
         name: data.name,
         about: data.about,
@@ -63,7 +85,7 @@ class Api {
   AvatarUpdate(data) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: this._getHeaders(),
       body: JSON.stringify({ avatar: data.avatar }),
     }).then(this._ApiVerification);
   }
@@ -73,7 +95,7 @@ class Api {
   addLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
-      headers: this._headers,
+      headers: this._getHeaders(),
     }).then(this._ApiVerification);
   }
 
@@ -81,23 +103,23 @@ class Api {
   removeLike(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: this._getHeaders(),
     }).then(this._ApiVerification);
   }
 
   changeLikeCardStatus(cardId, isLiked) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: isLiked ? "PUT" : "DELETE",
-      headers: this._headers,
+      headers: this._getHeaders(),
     }).then(this._ApiVerification);
   }
 }
 
 const api = new Api({
-  baseUrl: "https://around-api.es.tripleten-services.com/v1",
+  baseUrl: "http://localhost:3001",
   headers: {
     "content-type": "application/json; charset=UTF-8",
-    authorization: "0057b409-6bb9-49e8-86f9-882549209061",
+    /*authorization: "0057b409-6bb9-49e8-86f9-882549209061",*/
   },
 });
 
