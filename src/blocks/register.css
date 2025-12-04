@@ -59,3 +59,21 @@
   font-size: 14px;
   text-align: center;
 }
+
+@media screen and (max-width: 1024px) {
+}
+
+@media screen and (max-width: 544px) {
+  .register__input {
+    width: 260px;
+    margin: auto;
+  }
+  .register__buttonlogin {
+    width: 260px;
+    margin: auto;
+  }
+  .register__link {
+    width: 260px;
+    margin: auto;
+  }
+}

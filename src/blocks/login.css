@@ -78,3 +78,28 @@
   font-size: 14px;
   text-align: center;
 }
+
+@media screen and (max-width: 1024px) {
+}
+
+@media screen and (max-width: 544px) {
+  .login__buttonlogin {
+    width: 260px;
+    margin: auto;
+  }
+
+  .login__input {
+    width: 260px;
+    margin: auto;
+  }
+  .login__link {
+    width: 260px;
+    margin: auto;
+  }
+  .login__title {
+    margin: 0;
+  }
+  .login__form {
+    margin: 0;
+  }
+}
