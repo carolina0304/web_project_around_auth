@@ -2,7 +2,7 @@
   font-family: "Inter";
   font-weight: 900;
   font-size: 24px;
-  margin: 60px 461px 0 461px;
+  margin: 30px auto;
   color: #fff;
   text-align: center;
 }
@@ -70,7 +70,7 @@
   }
   .register__buttonlogin {
     width: 260px;
-    margin: auto;
+    margin: 40px auto;
   }
   .register__link {
     width: 260px;

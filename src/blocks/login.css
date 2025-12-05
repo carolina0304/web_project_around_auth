@@ -39,6 +39,7 @@
   color: white;
 
   border-bottom: 2px solid #cccccc;
+  padding-top: 30px;
 }
 
 /*.login__input_type_error {
@@ -52,6 +53,9 @@
 }*/
 
 /*.login__input-error {
+  font-family: "Inter";
+  color: red;
+  font-size: 12px;
 }*/
 
 .login__buttonlogin {
@@ -85,12 +89,13 @@
 @media screen and (max-width: 544px) {
   .login__buttonlogin {
     width: 260px;
-    margin: auto;
+    margin: 40px auto;
   }
 
   .login__input {
     width: 260px;
     margin: auto;
+    padding-top: 20px;
   }
   .login__link {
     width: 260px;
@@ -98,6 +103,7 @@
   }
   .login__title {
     margin: 0;
+    padding-top: 30px;
   }
   .login__form {
     margin: 0;

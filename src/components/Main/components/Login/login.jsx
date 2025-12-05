@@ -36,9 +36,9 @@ export default function Login(props) {
             placeholder="Correo electronico"
             required
           />
-          <span className="login__input-error login-email-error">
-            Por favor, Introduce un correo electronico.
-          </span>
+          {/*<span className="login__input-error login-email-error">
+            Introduce un correo electronico.
+          </span>*/}
           <label htmlFor="password" className="login__password-label">
             Contraseña:
           </label>
@@ -50,9 +50,11 @@ export default function Login(props) {
             onChange={(e) => setData({ ...data, password: e.target.value })}
             placeholder="Password"
           />
-          <span className="login__input-error login-password-error">
-            Por favor, Introduce tu contraseña.
-          </span>
+
+          {/*<span className="login__input-error login-password-error">
+            Introduce tu contraseña.
+          </span>*/}
+
           <button id="buttonLogin" type="submit" className="login__buttonlogin">
             Inicia Sesion
           </button>

@@ -36,9 +36,9 @@ export default function Register(props) {
             placeholder="Correo electronico"
             required
           />
-          <span className="register__input-error register-email-error">
+          {/*<span className="register__input-error register-email-error">
             Por favor, Introduce un correo electronico.
-          </span>
+          </span>*/}
           <label htmlFor="password" className="register__password-label">
             Contraseña:
           </label>
@@ -50,9 +50,9 @@ export default function Register(props) {
             onChange={(e) => setData({ ...data, password: e.target.value })}
             placeholder="Password"
           />
-          <span className="register__input-error register-password-error">
+          {/*<span className="register__input-error register-password-error">
             Por favor, Introduce tu contraseña.
-          </span>
+          </span>*/}
           <button
             id="buttonRegister"
             type="submit"

@@ -226,6 +226,14 @@
   .popup__text {
     left: -200px;
   }
+
+  .popup__icon {
+    left: -200px;
+  }
+
+  .popup__message {
+    left: -200px;
+  }
 }
 
 @media screen and (max-width: 544px) {
@@ -236,8 +244,8 @@
   .popup__close {
     width: 26px;
     height: 26px;
-    top: -40px;
-    left: 264px;
+    top: 80px;
+    left: 140px;
   }
 
   .popup__form {
@@ -297,5 +305,14 @@
   .popup__text {
     top: -320px;
     left: -30px;
+  }
+
+  .popup__icon {
+    margin: 30px 40px 30px 85px;
+  }
+
+  .popup__message {
+    margin: auto;
+    max-width: 240px;
   }
 }
